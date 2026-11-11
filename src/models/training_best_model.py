@@ -2,6 +2,7 @@ from sklearn.model_selection import GridSearchCV
 from sklearn.model_selection import train_test_split
 from src.features.preprocessing import preprocessing
 from sklearn.pipeline import Pipeline
+from sklearn.model_selection import StratifiedKFold
 def training_best_model(model , grad_param , df):
     X = df.drop(columns=["Student_ID" , "Mental_Health_Risk"])
     Y = df["Mental_Health_Risk"]
@@ -18,7 +19,7 @@ def training_best_model(model , grad_param , df):
         param_grid=grad_param,
         scoring='f1_macro',
         n_jobs=-1,
-        cv=5,
+        cv=StratifiedKFold(n_splits=5,shuffle=True,random_state=42),
     )
 
     gridsearch.fit(X_train,Y_train)
