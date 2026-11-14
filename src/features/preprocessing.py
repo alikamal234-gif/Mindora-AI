@@ -8,7 +8,7 @@ def preprocessing(df):
     category_pipline = Pipeline(
         steps=[
             ("impute" , SimpleImputer(strategy="most_frequent")),
-            ("encoder" , OneHotEncoder())
+            ("encoder" , OneHotEncoder(handle_unknown="ignore"))
         ]
     )
     numeric_pipline = Pipeline(steps=[

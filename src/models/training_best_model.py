@@ -7,7 +7,7 @@ def training_best_model(model , grad_param , df):
     X = df.drop(columns=["Student_ID" , "Mental_Health_Risk"])
     Y = df["Mental_Health_Risk"]
     X_train , X_test , Y_train , Y_test = train_test_split(
-        X,Y,random_state=42,test_size=0.2
+        X,Y,random_state=42,test_size=0.2 , stratify=Y
     )
     preprocessor = preprocessing(X_train)
     pipline = Pipeline(steps=[
